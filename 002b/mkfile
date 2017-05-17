@@ -1,0 +1,13 @@
+< ../config.mk
+
+all:VQ: bin/targets
+	$prereq | xargs mk
+
+results/$nPOP$POP2"_ALL.%.saf.gz":Q: data/$nPOP$POP2"_ALL.%.phase3_bc_union.20130502.biallelic_svm_snps_indelsAF0.005_svs.gl.vcf.gz"
+        ori_file=$(echo $target | sed 's/.saf.gz//g')
+        angsd -vcf-gl $prereq -nind $nPOP -fai $OTG_REFfai -anc $ANCESTRAL -dosaf 1 -out $ori_file.build &&
+        for i in $ori_file.build*
+        do
+                angsd_file=$(echo $i | sed 's/.build//g')
+                mv $i $angsd_file
+        done

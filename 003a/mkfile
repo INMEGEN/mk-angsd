@@ -1,0 +1,14 @@
+< ../config.mk
+
+all:VQ: bin/targets
+	$prereq | xargs mk
+
+chr%.$POP3.$POP1.ml:Q:
+	chromosome=$(echo $target | cut -d"." -f1)
+	pop3_file=$(ls data/POP3/*$chromosome*.saf.idx)
+	pop1_file=$(ls data/POP1/*$chromosome*.saf.idx)
+	echo "calculating $target"
+	echo "using $pop3_file vs $pop1_file"
+	echo "and $nth_2dSFS threads"
+## REPLACE bellow with path to realSFS
+##	./misc/realSFS $pop3_file $pop1_file -P $nth_2dSFS > $target

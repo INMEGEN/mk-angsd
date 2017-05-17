@@ -1,0 +1,3 @@
+ls data/POP3/*.saf.idx |\
+cut -d"." -f2 |\
+sed s#\$#.$POP3.$POP1.ml#g

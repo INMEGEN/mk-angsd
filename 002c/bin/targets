@@ -1,0 +1,13 @@
+#!/bin/bash
+
+###Chromosomes to evaluate in AMI samples
+#CHROMOSOMES=($(seq 22) X Y MT)
+CHROMOSOMES=( 22 )      ##For testing purposes
+
+##Counting the number of samples to analize
+n_AMI_samples=$(ls data/*.bam | wc -l)
+
+for i in "${CHROMOSOMES[@]}"
+do
+	echo "results/$n_AMI_samples\"AMI.chr$i.saf.gz\""
+done

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+##chromosomes=( $(seq 22 | awk ' BEGIN { OFS=""} { print "chr",$0 }' ) ) 
+
+##for chrm in "${chromosomes[@]}"
+##do
+##ls data/1000G/vcfs/ALL.$chrm.phase3_bc_union.20130502.biallelic_svm_snps_indelsAF0.005_svs.gl.vcf.gz | cut -d"/" -f4 \
+ls data/1000G/vcfs/ALL.*.phase3_bc_union.20130502.biallelic_svm_snps_indelsAF0.005_svs.gl.vcf.gz | cut -d"/" -f4 \
+| awk -v POP="$POP2" -v nPOP="$nPOP" 'BEGIN {OFS=""} {print "results/"nPOP,POP,"_"$1}'
+##done
