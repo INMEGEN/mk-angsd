@@ -15,7 +15,7 @@ POP1="EAS"
 POP2="FR"
 POP3="AMI"
 
-#Number of individuals for each POPx
+#Number of individuals for each POP
 nPOP="2"
 
 #ancestral alleles for angsd
