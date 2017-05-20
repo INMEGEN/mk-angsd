@@ -1,7 +1,7 @@
 < ../config.mk
 
 all:V: bin/targets
-	$prereq | xargs mk
+	$prereq #| xargs mk
 
 results/$nPOP$POP1"_ALL."%".phase3_bc_union.20130502.biallelic_svm_snps_indelsAF0.005_svs.gl.vcf.gz":Q:	data/1000G/vcfs/ALL.%.phase3_bc_union.20130502.biallelic_svm_snps_indelsAF0.005_svs.gl.vcf.gz
 	bin/0.vcf_population_sampler.sh $POP1 &&

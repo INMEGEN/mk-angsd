@@ -3,7 +3,7 @@
 all:VQ:
         bin/targets | xargs mk
 
-results/2$POP3".chr%.saf.gz":Q: tmp/chr%.SM-3MG4T.final.bam tmp/chr%.SM-3MG4U.final.bam 
+results/3$POP3".chr%.saf.gz":Q: tmp/chr%.SM-3MG3R.chr22.bam tmp/chr%.SM-3MG47.chr22.bam tmp/chr%.SM-3MG4H.chr22.bam 
 	chrom=$(echo $target | cut -d"." -f2 | sed s#chr##)
 	ori_file=$(echo $target | sed 's/.saf.gz//g')
         echo "Calculating SAF for chromosome $chrom to $target"
@@ -16,17 +16,30 @@ results/2$POP3".chr%.saf.gz":Q: tmp/chr%.SM-3MG4T.final.bam tmp/chr%.SM-3MG4U.fi
         done &&
 	rm tmp/*
 
-tmp/chr%.SM-3MG4T.final.bam:Q: data/SM-3MG4T.final.bam
+tmp/chr%.SM-3MG3R.chr22.bam:Q: data/SM-3MG3R.chr22.bam
 	chrom=$(echo $target | cut -d"." -f1 | sed s#tmp/chr##)
 	echo "Slicing $chrom from $prereq"
-	samtools_0.1.18 view -h -b $prereq $chrom > $target.build &&
+##	samtools_0.1.18 view -h -b $prereq $chrom > $target.build &&
+	samtools view -h -b $prereq $chrom > $target.build &&
 	mv $target.build $target
-	samtools_0.1.18 index $target
+##	samtools_0.1.18 index $target
+	samtools index $target
 	
-tmp/chr%.SM-3MG4U.final.bam:Q: data/SM-3MG4U.final.bam
+tmp/chr%.SM-3MG47.chr22.bam:Q: data/SM-3MG47.chr22.bam
 	chrom=$(echo $target | cut -d"." -f1 | sed s#tmp/chr##)
 	echo "Slicing $chrom from $prereq"
-	samtools_0.1.18 view -h -b $prereq $chrom > $target.build &&
+##	samtools_0.1.18 view -h -b $prereq $chrom > $target.build &&
+	samtools view -h -b $prereq $chrom > $target.build &&
 	mv $target.build $target
-	samtools_0.1.18 index $target
+##	samtools_0.1.18 index $target
+	samtools index $target
+	
+tmp/chr%.SM-3MG4H.chr22.bam:Q: data/SM-3MG4H.chr22.bam
+	chrom=$(echo $target | cut -d"." -f1 | sed s#tmp/chr##)
+	echo "Slicing $chrom from $prereq"
+##	samtools_0.1.18 view -h -b $prereq $chrom > $target.build &&
+	samtools view -h -b $prereq $chrom > $target.build &&
+	mv $target.build $target
+##	samtools_0.1.18 index $target
+	samtools index $target
 	

@@ -48,9 +48,11 @@ prereq=$(echo $p | sed s#tmp/chr%.#data/#g | sed s#:Q:##g )
 	echo "$p $prereq
 	chrom=\$(echo \$target | cut -d\".\" -f1 | sed s#tmp/chr##)
 	echo \"Slicing \$chrom from \$prereq\"
-	samtools_0.1.18 view -h -b \$prereq \$chrom > \$target.build &&
+##	samtools_0.1.18 view -h -b \$prereq \$chrom > \$target.build &&
+	samtools view -h -b \$prereq \$chrom > \$target.build &&
 	mv \$target.build \$target
-	samtools_0.1.18 index \$target
+##	samtools_0.1.18 index \$target
+	samtools index \$target
 	" >> mkfile
 done < $prereq_list.newlines
 

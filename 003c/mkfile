@@ -3,12 +3,13 @@
 all:VQ: bin/targets
 	$prereq | xargs mk
 
-chr%.$POP1.$POP2.ml:Q:
-	chromosome=$(echo $target | cut -d"." -f1)
+results/chr%.$POP1.$POP2.ml:Q:
+	chromosome=$(echo $target | sed s#results/##g |cut -d"." -f1)
 	pop1_file=$(ls data/POP1/*$chromosome*.saf.idx)
 	pop2_file=$(ls data/POP2/*$chromosome*.saf.idx)
 	echo "calculating $target"
 	echo "using $pop1_file vs $pop2_file"
 	echo "and $nth_2dSFS threads"
 ## REPLACE bellow with path to realSFS
-##	./misc/realSFS $pop1_file $pop2_file -P $nth_2dSFS > $target
+	realSFS $pop1_file $pop2_file -P $nth_2dSFS > $target.build &&
+	mv $target.build $target
